@@ -1,0 +1,171 @@
+.calendar {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* h1 {
+    text-align: center;
+    margin: 0;
+    padding: 10px;
+    background: #007bff;
+    color: #fff;
+  } */
+
+.selector {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.selector select {
+  padding: 5px;
+  font-size: 16px;
+}
+
+.day_of_week {
+  display: flex;
+  justify-content: space-around;
+  color: #fff;
+  font-weight: bold;
+}
+
+.day-name {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  background-color: #7051cf;
+}
+
+#days-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.day {
+  flex: 1 0 calc(100% / 7); /* Adjust width for 7 columns */
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+  position: relative;
+  min-height: 80px; /* Adjusted for better visibility */
+  display: flex;
+  align-items: start;
+  font-weight: bold;
+}
+
+.dot-container {
+  display: flex;
+  margin-top: 30px;
+  /* flex-direction: column; */
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+}
+
+.green-dot {
+  width: 10px;
+  height: 30px;
+  background-color: #55a292;
+  margin-bottom: 5px;
+}
+
+.text_shift_display {
+  display: flex;
+  justify-content: start;
+  color: black;
+  margin-left: 15px;
+  font-size: 12px;
+  width: 250px;
+  /* background-color: white; */
+  /* border: green 1px solid; */
+  /* padding: 10px; */
+  /* position: absolute; */
+  /* z-index: 1000; */
+  /* width: 100%;
+    margin-top: -10px;
+    border-radius: 10px 10px; */
+}
+
+/* .text_shift_display::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    transform: translateY(-50%); 
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent green transparent transparent;
+  } */
+
+.textcontent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.icon_add_shift {
+  width: 18px;
+  height: 18px;
+  margin: 5px;
+}
+.icon_edit_shift {
+  width: 15px;
+  height: 15px;
+  margin: 5px;
+}
+
+.button_input_shift {
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+}
+
+/* .shift_display_button:hover {
+   background-color: aqua;
+   color: black;
+  } */
+
+.shift_display_button {
+  align-items: center;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  color: black;
+  cursor: pointer;
+  margin: 5px;
+  font-size: 15px;
+  border-color: #007b63;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  align-items: center;
+}
+
+.shift_display_button:active {
+  transform: scale(0.95);
+}
+
+.edit_button_class {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  color: black;
+  cursor: pointer;
+  margin: 5px;
+  font-size: 15px;
+  border-color: #007b63;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  align-items: center;
+  margin-left: 15px;
+}

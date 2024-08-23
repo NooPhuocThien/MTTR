@@ -1,0 +1,295 @@
+
+.kpi_table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.kpi_table th {
+    background-color: #E8E9F8;
+    color: #2F3478  ;
+    text-align: center;
+    font-size: 100%;
+    padding: 10px;
+    font-weight: 700;
+    position: sticky;
+    top: 0;
+    z-index: 1; 
+}
+
+
+.kpi_table td {
+    text-align: center;
+    align-items: center;    
+    font-size: 100%;
+}
+.kpi_table tr:nth-child(even) {
+    background-color: #F9F9F9;
+}
+.kpi_table tr:hover  {
+    background-color: rgb(181, 181, 181);
+    cursor: pointer; /* Con trỏ chuột thành bàn tay */
+}
+
+
+
+.history_issue_table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.history_issue_table th {
+    background-color: var(--table_header);
+    color: var(--color_1)  ;
+    text-align: center;
+    font-size: 100%;
+    padding: 5px;
+    font-weight: normal;
+    /* position: sticky;
+    top: 0;
+    z-index: 1;  */
+}
+
+
+.history_issue_table td {
+    text-align: center;
+    align-items: center;
+    font-size: 100%;
+}
+.history_issue_table tr:nth-child(even) {
+    background-color: #F9F9F9;
+}
+.history_issue_table tr:hover  {
+    background-color: rgb(181, 181, 181);
+    cursor: pointer; /* Con trỏ chuột thành bàn tay */
+}
+
+
+
+
+
+
+tr:nth-child(even) {  
+    background-color: white;
+  }
+
+.title-table{
+    background-color: #009879;
+    height: 18px;
+    font-size: 12px;
+    color: white;;
+    font-weight: bold;
+    text-align: center;
+}
+
+.agm-table{
+    align-items: center;
+    width: 100%;
+}
+.inbound_table{
+    border-collapse: collapse;
+    text-align: center;
+    align-items: center;
+    /* width: 100%; */
+    border-collapse: collapse;
+}
+
+.inbound_table th {
+    background-color: var(--main-color);
+    color: white  ;
+    text-align: center;
+}
+
+.inbound_table td {
+    text-align: center;
+    align-items: center;
+    font-size: 100%;
+}
+.inbound_table_styled {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.inbound_table_styled th {
+    background-color: var(--color_1);
+    color: white;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 2; /* Đảm bảo tiêu đề không bị che khuất bởi các phần tử khác */
+}
+
+.inbound_table_styled td {
+    border: 1px solid #ddd; /* Đường viền cho từng ô */
+    text-align: center;
+}
+
+.inbound_table_styled thead {
+    background-color: var(--color_1); /* Màu nền cho phần đầu bảng */
+    color: white; /* Màu chữ cho tiêu đề */
+    position: sticky;
+    top: 0;
+    z-index: 2; /* Đảm bảo tiêu đề không bị che khuất */
+}
+
+.inbound_table_styled tbody {
+    position: relative; /* Để thiết lập độ rộng của các ô */
+}
+
+
+.inbound_table_styled tr:nth-child(even) {
+    background-color: var(--color_4);
+}
+
+
+.input_table {
+    border-collapse: collapse;
+    text-align: start;
+    align-items: start;
+    width: 100%;
+
+}
+
+.input_table th {
+    background-color: var(--main-color);
+    color: white  ;
+    text-align: start;
+    position: sticky;
+    top: 0;
+    z-index: 1; /* Đảm bảo tiêu đề không bị che khuất */
+    font-size: 80%;
+}
+
+.input_table td {
+    text-align: start;
+    align-items: start;
+    font-size: 90%;
+}
+.input_table tr:nth-child(even) {
+    background-color: var(--color_4);
+}
+
+.output_table {
+    border-collapse: collapse;
+    text-align: start;
+    align-items: start;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.output_table th {
+    background-color: var(--main-color);
+    color: white;
+    text-align: start;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    font-size: 80%;;
+}
+
+.output_table td {
+    text-align: start;
+    align-items: start;
+    font-size: 90%;
+}
+.output_table tr:nth-child(even) {
+    background-color: var(--color_4);
+}
+
+.safety_quantity_table{
+    border-collapse: collapse;
+    text-align: start;
+    align-items: start;
+    width: 100%;
+}
+
+.safety_quantity_table th {
+    background-color: var(--main-color);
+    color: white  ;
+    text-align: start;
+}
+
+.safety_quantity_table td {
+    text-align: start;
+    align-items: start;
+    font-size: 100%;
+    color: red;
+}
+
+.safety_quantity_table tr:nth-child(even) {
+    background-color: var(--color_4) /* Màu nền với độ mờ 10% */
+}
+
+.safety_quantity_table tr:hover{
+background-color: rgb(181, 181, 181);
+cursor: pointer; /* Con trỏ chuột thành bàn tay */
+}
+
+.inout_search_result_table{
+    border-collapse: collapse;
+    text-align: start;
+    align-items: start;
+    width: 100%;
+    /* background-color: red; */
+}
+
+.inout_search_result_table th {
+    background-color: var(--main-color);
+    color: white  ;
+    text-align: start;
+    position: sticky;
+    font-size: 80%;
+    position: sticky;
+    top: 0;
+    z-index: 1; /* Đảm bảo tiêu đề không bị che khuất */
+}
+
+.inout_search_result_table td {
+    text-align: start;
+    align-items: start;
+    font-size: 90%;
+}
+.inout_search_result_table tr:nth-child(even) {
+    background-color: var(--color_4);
+}
+
+.inout_search_result_table tr:hover  {
+    background-color: rgb(181, 181, 181);
+}
+
+.outbound_table_styled {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.outbound_table_styled th {
+    background-color: var(--color_1);
+    color: white;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 2; /* Đảm bảo tiêu đề không bị che khuất bởi các phần tử khác */
+}
+
+.outbound_table_styled td {
+    border: 1px solid #ddd; /* Đường viền cho từng ô */
+    text-align: center;
+}
+
+.outbound_table_styled thead {
+    background-color: var(--color_1); /* Màu nền cho phần đầu bảng */
+    color: white; /* Màu chữ cho tiêu đề */
+    position: sticky;
+    top: 0;
+    z-index: 2; /* Đảm bảo tiêu đề không bị che khuất */
+}
+
+.outbound_table_styled tbody {
+    position: relative; /* Để thiết lập độ rộng của các ô */
+}
+
+
+.outbound_table_styled tr:nth-child(even) {
+    background-color: var(--color_4);
+}

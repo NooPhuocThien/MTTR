@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MTTR-MTBF</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="../uibuilder/images/node-blue.ico" />
+    <meta name="description" content="Node-RED uibuilder - Blank template" />
+
+    <!-- Your own CSS (defaults to loading uibuilders css)-->
+    <link type="text/css" rel="stylesheet" href="./index.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="./table.css" media="all" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="./responsive.css"
+      media="all"
+    />
+    <link type="text/css" rel="stylesheet" href="./title_bar.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="./stand-tv.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="./button.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="./calender.css" media="all" />
+    <link type="text/css" rel="stylesheet" href="./icon.css" media="all" />
+    <!-- #region Supporting Scripts. These MUST be in the right order. Note no leading / -->
+    <script defer src="../uibuilder/uibuilder.iife.min.js"></script>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="table.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    <link rel="stylesheet" href="title_bar.css" />
+    <link rel="stylesheet" href="stand-tv.css" />
+    <link rel="stylesheet" href="button.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+    />
+    <script defer src="./index.js"></script>
+    <script defer src="./calender.js"></script>
+    <div class="header">
+      <div class="header-left">
+        <div class="icon_header_left">
+          <svg
+            width="100%"
+            height="100%"
+            viewBox="0 0 18 18"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill="var(--main-color)"
+              d="M9,12a3,3,0,1,1,1.67-5.493,2,2,0,0,1,2.61-.044l4.651,3.876A.979.979,0,0,0,18,10V8a1,1,0,0,0-1-1h-.76a1,1,0,0,1-.7-1.71l.53-.53a1.008,1.008,0,0,0,0-1.42L14.66,1.93a1.008,1.008,0,0,0-1.42,0l-.51.51a.974.974,0,0,1-.73.32,1,1,0,0,1-1-1V1a1,1,0,0,0-1-1H8A1,1,0,0,0,7,1v.76a1,1,0,0,1-1,1,.974.974,0,0,1-.73-.32l-.51-.51a1.008,1.008,0,0,0-1.42,0L1.93,3.34a1.008,1.008,0,0,0,0,1.42c.19.19.4.37.58.57A.919.919,0,0,1,2.76,6a1,1,0,0,1-1,1H1A1,1,0,0,0,0,8v2a1,1,0,0,0,1,1h.76a1,1,0,0,1,1,1,.919.919,0,0,1-.25.67c-.18.2-.39.38-.58.57a1.008,1.008,0,0,0,0,1.42l1.41,1.41a1.008,1.008,0,0,0,1.42,0l.51-.51A.974.974,0,0,1,6,15.24a1,1,0,0,1,1,1V17a1,1,0,0,0,1,1h2V11.817A2.982,2.982,0,0,1,9,12Z"
+            />
+            <path
+              fill="var(--main-color)"
+              d="M17.72,13a.479.479,0,0,1-.19.39l-4.71,3.93a.517.517,0,0,1-.32.11.5.5,0,0,1-.5-.5V9.04a.5.5,0,0,1,.5-.47.522.522,0,0,1,.31.1l4.72,3.94A.479.479,0,0,1,17.72,13Z"
+            />
+          </svg>
+        </div>
+        <div
+          class=""
+          style="
+            color: var(--main-color);
+            margin-left: 10px;
+            font-weight: bold;
+            font-size: 25px;
+          "
+        >
+          MTTR-MTBF DOWNTIME
+        </div>
+      </div>
+      <div class="header-right">
+        <!-- <div class="user_login">
+                <div><img  class="user_icon"></div> 
+                <div class="user_text" id="user_text_id">User</div>
+                <div class="login_button_div">
+                    <button class="login_button_class" id="login_button_id" onclick="login_ui()">login</button>
+                    <button style="display: none;" class="login_button_class" id="logout_button_id" onclick="logout_ui()">logout</button>
+                </div>
+            </div> -->
+        <img src="img/robot.1938a390dbed0a6e5bad.gif " class="header_icon" />
+      </div>
+    </div>
+  </head>
+
+  <body lang="en">
+    <div class="warning_popup" id="warning_popup_id">
+      <div class="warning_row_2">
+        <div class="button_warning_class">
+          <button
+            class="button_warning"
+            onclick="document.getElementById('warning_popup_id').style.display = 'none'"
+          >
+            X
+          </button>
+        </div>
+        <div class="warning_text_box">
+          <img
+            src="img/apply.svg"
+            class="icon_warning"
+            id="icon_apply_icon"
+            style="display: none"
+          />
+          <img
+            src="img/warining.svg"
+            class="icon_warning"
+            id="icon_error_icon"
+            style="display: none"
+          />
+          <div class="warning_text" id="warning_text_id">Update Success</div>
+        </div>
+      </div>
+      <div class="warning_row_3" id="warning_row_3_id">
+        <div class="warning_col">
+          <div class="warning_button">
+            <button
+              class="warning_button_class"
+              style="background-color: green; color: white"
+              onclick="shift_remove()"
+            >
+              OK
+            </button>
+          </div>
+        </div>
+        <div class="warning_col">
+          <div class="warning_button">
+            <button
+              class="warning_button_class"
+              style="background-color: red; color: white"
+              onclick="document.getElementById('warning_popup_id').style.display = 'none'"
+            >
+              cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="all">
+      <div class="left_col">
+        <div class="all_button">
+          <button
+            class="button_same"
+            id="button_shift_id"
+            onclick="shift_input_ui()"
+            style="background-color: var(--color_2); color: var(--main-color)"
+          >
+            <div class="icon">
+              <svg
+                fill="var(--main-color)"
+                id="shift_input_icon_id"
+                width="100%"
+                height="100%"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 32.75 32.75"
+                xml:space="preserve"
+              >
+                <path
+                  d="M29.375,1.25h-1.123c0.029-0.093,0.059-0.186,0.059-0.289c0-0.53-0.432-0.961-0.963-0.961s-0.961,0.431-0.961,0.961
+                            c0,0.103,0.028,0.196,0.059,0.289h-3.68c0.029-0.093,0.059-0.186,0.059-0.289C22.823,0.431,22.393,0,21.861,0
+                            C21.331,0,20.9,0.431,20.9,0.961c0,0.103,0.029,0.196,0.059,0.289h-3.682c0.029-0.093,0.059-0.186,0.059-0.289
+                            c0-0.53-0.43-0.961-0.961-0.961c-0.531,0-0.961,0.431-0.961,0.961c0,0.103,0.028,0.196,0.058,0.289h-3.681
+                            c0.029-0.093,0.059-0.186,0.059-0.289C11.85,0.431,11.419,0,10.889,0c-0.531,0-0.962,0.431-0.962,0.961
+                            c0,0.103,0.028,0.196,0.058,0.289h-3.68c0.03-0.093,0.059-0.186,0.059-0.289C6.364,0.43,5.934,0,5.403,0
+                            C4.872,0,4.441,0.431,4.441,0.961c0,0.103,0.028,0.196,0.058,0.289H3.375c-1.518,0-2.75,1.233-2.75,2.75v26
+                            c0,1.518,1.232,2.75,2.75,2.75H26.27l5.855-5.855V4C32.125,2.483,30.893,1.25,29.375,1.25z M30.625,26.273l-0.311,0.311h-2.355
+                            c-1.102,0-2,0.9-2,2v2.355l-0.311,0.311H3.375c-0.689,0-1.25-0.561-1.25-1.25V5h28.5V26.273z"
+                />
+                <polygon
+                  points="15.049,23.682 17.701,23.682 17.701,19.701 21.68,19.701 21.68,17.049 17.701,17.049 17.701,13.069 
+                            15.049,13.069 15.049,17.049 11.07,17.049 11.07,19.701 15.049,19.701 		"
+                />
+                <path
+                  d="M16.376,28.229c5.433,0,9.853-4.42,9.853-9.854c0-5.434-4.42-9.854-9.853-9.854c-5.434,0-9.854,4.42-9.854,9.854
+                            C6.522,23.809,10.942,28.229,16.376,28.229z M16.376,10.037c4.597,0,8.337,3.741,8.337,8.338c0,4.598-3.74,8.338-8.337,8.338
+                            c-4.598,0-8.339-3.74-8.339-8.338C8.037,13.778,11.778,10.037,16.376,10.037z"
+                />
+              </svg>
+            </div>
+            <div class="button_text">Shift Input</div>
+          </button>
+
+          <button
+            class="button_same"
+            id="button_issue_id"
+            onclick="issue_input_ui()"
+          >
+            <div class="icon">
+              <svg
+                width="800px"
+                height="800px"
+                viewBox="0 0 24 24"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g
+                  stroke="none"
+                  stroke-width="1"
+                  fill="none"
+                  fill-rule="evenodd"
+                >
+                  <g
+                    class="icon_left_side"
+                    id="issue_input_icon_id"
+                    fill-rule="nonzero"
+                  >
+                    <path
+                      d="M6.5,12 C9.53756612,12 12,14.4624339 12,17.5 C12,20.5375661 9.53756612,23 6.5,23 C3.46243388,23 1,20.5375661 1,17.5 C1,14.4624339 3.46243388,12 6.5,12 Z M16.748832,2 C17.9914727,2 18.998832,3.00735931 18.998832,4.25 L18.998832,19.75 C18.998832,20.9926407 17.9914727,22 16.748832,22 L11.1896412,22.0008195 C12.3108737,20.8328473 13,19.2469007 13,17.5 C13,13.9101491 10.0898509,11 6.5,11 C5.61412742,11 4.76964604,11.1772168 4,11.4981326 L4,4.25 C4,3.00735931 5.00735931,2 6.25,2 L16.748832,2 Z M6.5,19.88 C6.15509206,19.88 5.87548893,20.1596031 5.87548893,20.5045111 C5.87548893,20.849419 6.15509206,21.1290221 6.5,21.1290221 C6.84490794,21.1290221 7.12451107,20.849419 7.12451107,20.5045111 C7.12451107,20.1596031 6.84490794,19.88 6.5,19.88 Z M6.5000438,14.0030924 C6.25458391,14.0030924 6.05043543,14.1799676 6.00809947,14.4132168 L6.0000438,14.5030924 L6.0000438,18.5006005 L6.00809947,18.5904761 C6.05043543,18.8237254 6.25458391,19.0006005 6.5000438,19.0006005 C6.74550369,19.0006005 6.94965217,18.8237254 6.99198813,18.5904761 L7.0000438,18.5006005 L7.0000438,14.5030924 L6.99198813,14.4132168 C6.94965217,14.1799676 6.74550369,14.0030924 6.5000438,14.0030924 Z M20.75,15.001939 C21.1296958,15.001939 21.443491,15.2840929 21.4931534,15.6501685 L21.5,15.751939 L21.5,17.25 C21.5,17.6296958 21.2178461,17.943491 20.8517706,17.9931534 L20.75,18 L20,18 L20,15.001939 L20.75,15.001939 Z M20.75,11.001939 C21.1296958,11.001939 21.443491,11.2840929 21.4931534,11.6501685 L21.5,11.751939 L21.5,13.25 C21.5,13.6296958 21.2178461,13.943491 20.8517706,13.9931534 L20.75,14 L20,14 L20,11.001939 L20.75,11.001939 Z M20.75,7.00193905 C21.1296958,7.00193905 21.443491,7.28409293 21.4931534,7.65016849 L21.5,7.75193905 L21.5,9.25 C21.5,9.62969577 21.2178461,9.94349096 20.8517706,9.99315338 L20.75,10 L20,10 L20,7.00193905 L20.75,7.00193905 Z M14.7479601,5.50057985 L8.24808647,5.50057985 C7.8683907,5.50057985 7.55459551,5.78273373 7.50493309,6.14880929 L7.49808647,6.25057985 L7.49808647,7.75096952 C7.49808647,8.13066529 7.78024035,8.44446048 8.14631591,8.49412291 L8.24808647,8.50096952 L14.7479601,8.50096952 C15.1276559,8.50096952 15.4414511,8.21881564 15.4911135,7.85274008 L15.4979601,7.75096952 L15.4979601,6.25057985 C15.4979601,5.83636628 15.1621737,5.50057985 14.7479601,5.50057985 Z"
+                      id="🎨-Color"
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+            </div>
+            <div class="button_text">Issue Input</div>
+          </button>
+
+          <button class="button_same" id="button_kpi_id" onclick="kpi_ui()">
+            <div class="icon">
+              <svg
+                class="icon_left_side"
+                id="kpi_icon_id"
+                width="100%"
+                height="100%"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M22,12A10,10,0,1,1,12,2a1,1,0,0,1,0,2,8,8,0,1,0,8,8,1,1,0,0,1,2,0ZM12,9a1,1,0,0,0,0-2,5,5,0,1,0,5,5,1,1,0,0,0-2,0,3,3,0,1,1-3-3Zm-.71,3.71a1,1,0,0,0,1.42,0L16.41,9H19a1,1,0,0,0,.71-.29l2-2A1,1,0,0,0,22,5.84a1,1,0,0,0-.54-.73l-1.7-.86-.86-1.7A1,1,0,0,0,18.16,2a1,1,0,0,0-.87.28l-2,2A1,1,0,0,0,15,5V7.59l-3.71,3.7A1,1,0,0,0,11.29,12.71Z"
+                ></path>
+              </svg>
+            </div>
+            <div class="button_text">KPI</div>
+          </button>
+
+          <button
+            class="button_same"
+            id="button_issue_history_id"
+            onclick="issue_history_ui()"
+          >
+            <div class="icon">
+              <svg
+                class="icon_left_side"
+                id="history_icon_id"
+                width="100%"
+                height="100%"
+                viewBox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10.6972,0.468433 C12.354,1.06178 13.7689,2.18485 14.7228,3.66372 C15.6766,5.14258 16.1163,6.89471 15.9736,8.64872 C15.8309,10.4027 15.1138,12.0607 13.9334,13.366 C12.753,14.6712 11.1752,15.5508 
+                9.4443,15.8685 C7.71342,16.1863 5.92606,15.9244 4.35906,15.1235 C2.79206,14.3226 1.53287,13.0274 0.776508,11.4384 C0.539137,10.9397 0.750962,10.343 1.24963,10.1057 C1.74831,9.86829 2.34499,10.0801 2.58236,10.5788 
+                C3.14963,11.7705 4.09402,12.742 5.26927,13.3426 C6.44452,13.9433 7.78504,14.1397 9.08321,13.9014 C10.3814,13.6631 11.5647,13.0034 12.45,12.0245 C13.3353,11.0456 13.8731,9.80205 13.9801,8.48654 C14.0872,7.17103 13.7574,5.85694 
+                13.042,4.74779 C12.3266,3.63864 11.2655,2.79633 10.0229,2.35133 C8.78032,1.90632 7.42568,1.88344 6.1688,2.28624 C5.34644,2.54978 4.59596,2.98593 3.96459,3.5597 L4.69779,4.29291 C5.32776,4.92287 4.88159,6.00002 3.99069,6.00002 
+                L1.77635684e-15,6.00002 L1.77635684e-15,2.00933 C1.77635684e-15,1.11842 1.07714,0.672258 1.70711,1.30222 L2.54916,2.14428 C3.40537,1.3473 4.43126,0.742882 5.55842,0.381656 C7.23428,-0.155411 9.04046,-0.124911 10.6972,0.468433 
+                Z M8,4 C8.55229,4 9,4.44772 9,5 L9,7.58579 L10.7071,9.29289 C11.0976,9.68342 11.0976,10.3166 10.7071,10.7071 C10.3166,11.0976 9.68342,11.0976 9.29289,10.7071 L7,8.41421 L7,5 C7,4.44772 7.44772,4 8,4 Z"
+                />
+              </svg>
+            </div>
+            <div class="button_text">Issue history</div>
+          </button>
+        </div>
+      </div>
+      <div class="right_col">
+        <!-- ROW 2 MORE INFORMATION -->
+        <div class="row_2">
+          <div class="shift_input_class" id="shift_input_id">
+            <div class="shift_input_up">
+              <div class="shift_input_up_left">
+                <div class="shift_input_up_col">
+                  <div class="shift_input_text">Project:</div>
+                  <div class="shift_row_input">
+                    <select
+                      class="shift_input_data"
+                      id="shift_project_id"
+                      onchange="update_machine()"
+                    >
+                      <option value="">Select Project</option>
+                      <option value="ACO">ACO</option>
+                      <option value="AAC">AAC</option>
+                      <option value="UCC">UCC</option>
+                      <option value="UCB">UCB</option>
+                      <option value="AFM">AFM</option>
+                      <option value="ACP">ACP</option>
+                      <option value="LC2.0">LC2.0</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="shift_input_up_col">
+                  <div class="shift_input_text">Machine:</div>
+                  <div class="shift_row_input">
+                    <select
+                      class="shift_input_data"
+                      id="shift_machine_id"
+                      onchange="call_calender()"
+                    >
+                      <option value="" disabled selected>Select Machine</option>
+                    </select>
+                  </div>
+                </div>
+                <!-- <div class="shift_input_up_button">
+                                <button class="button_added" id="button_added_id" onclick="shift_input()">    <img src="img/ok-svgrepo-com.svg" class="icon">OK</button>  
+                            </div> -->
+              </div>
+
+              <div class="shift_input_up_right">
+                <div class="shift_input_up_col">
+                  <div class="shift_input_text" style="margin-right: 10px">
+                    Month:
+                  </div>
+                  <div class="shift_row_input">
+                    <select id="monthSelect" class="shift_input_data">
+                      <option value="0">January</option>
+                      <option value="1">February</option>
+                      <option value="2">March</option>
+                      <option value="3">April</option>
+                      <option value="4">May</option>
+                      <option value="5">June</option>
+                      <option value="6">July</option>
+                      <option value="7">August</option>
+                      <option value="8">September</option>
+                      <option value="9">October</option>
+                      <option value="10">November</option>
+                      <option value="11">December</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="shift_input_up_col">
+                  <div class="shift_input_text" style="margin-right: 10px">
+                    Year:
+                  </div>
+                  <div class="shift_row_input">
+                    <select id="yearSelect" class="shift_input_data">
+                      <script>
+                        const yearSelect =
+                          document.getElementById("yearSelect");
+                        const currentYear = new Date().getFullYear();
+
+                        for (let year = 2000; year <= 2050; year++) {
+                          const option = document.createElement("option");
+                          option.value = year;
+                          option.textContent = year;
+                          yearSelect.appendChild(option);
+                        }
+
+                        // Set the current year as selected
+                        yearSelect.value = currentYear;
+
+                        // Set the current month as selected
+                        const monthSelect =
+                          document.getElementById("monthSelect");
+                        const currentMonth = new Date().getMonth();
+                        monthSelect.value = currentMonth;
+                      </script>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="shift_input_down" id="shift_input_down_id">
+              <div class="calendar">
+                <div class="shift_input_month_year_text">
+                  <div class="" id="monthYear"></div>
+                </div>
+                <div class="day_of_week">
+                  <div class="day-name">Mon</div>
+                  <div class="day-name">Tue</div>
+                  <div class="day-name">Wed</div>
+                  <div class="day-name">Thu</div>
+                  <div class="day-name">Fri</div>
+                  <div class="day-name">Sat</div>
+                  <div class="day-name">Sun</div>
+                </div>
+                <div id="days-container"></div>
+              </div>
+            </div>
+
+            <div
+              class="shift_input_information_all"
+              id="shift_input_information_id"
+            >
+              <div class="shift_input_information">
+                <div class="shift_input_information_row_1">
+                  <div class="title_add">SHIFT INPUT</div>
+                  <div class="close">
+                    <button class="close_button" onclick="back_0()">
+                      <img src="img/close-svgrepo-com.svg" class="icon_close" />
+                    </button>
+                  </div>
+                </div>
+                <div class="shift_input_information_row_2">
+                  <div class="row_for_earch_data">
+                    <div class="shift_input_infor_text">Machine:</div>
+                    <div class="row_input">
+                      <div
+                        class="issue_input_data"
+                        id="shift_input_information_machine_id"
+                      >
+                        F
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row_for_earch_data">
+                    <div class="shift_input_infor_text">Date Time:</div>
+                    <div class="row_input">
+                      <div
+                        class="issue_input_data"
+                        id="shift_input_information_date_id"
+                      >
+                        A
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row_for_earch_data">
+                    <div class="shift_input_infor_text">Shift:</div>
+                    <div class="row_input">
+                      <div class="checkbox_class">
+                        <input
+                          type="checkbox"
+                          id="shift_option1"
+                          name="shift_option"
+                          value="main"
+                        />
+                        <div>Main shift</div>
+                      </div>
+                      <div class="checkbox_class">
+                        <input
+                          type="checkbox"
+                          id="shift_option2"
+                          name="shift_option"
+                          value="shift1"
+                        />
+                        <div>Shift 1</div>
+                      </div>
+                      <div class="checkbox_class">
+                        <input
+                          type="checkbox"
+                          id="shift_option3"
+                          name="shift_option"
+                          value="shift2"
+                        />
+                        <div>Shift 2</div>
+                      </div>
+                      <div class="checkbox_class">
+                        <input
+                          type="checkbox"
+                          id="shift_option4"
+                          name="shift_option"
+                          value="shift3"
+                        />
+                        <div>Shift 3</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="shift_input_information_row_3">
+                  <button
+                    class="button_added"
+                    id="button_added_id"
+                    onclick="shift_input()"
+                  >
+                    <img src="img/ok-svgrepo-com.svg" class="icon" />OK
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END SHIFT INPUT -->
+
+          <!-- BEGIN ISSUE INPUT -->
+          <div class="issue_input_class" id="issue_input_id">
+            <div class="issue_input_up">
+              <div class="issue_input_1">
+                <div class="title_add">ISSUE INPUT</div>
+                <div class="close">
+                  <button class="close_button" onclick="back_5()">
+                    <img src="img/close-svgrepo-com.svg" class="icon_close" />
+                  </button>
+                </div>
+              </div>
+              <div class="issue_input_3">
+                <div class="issue_input_3_left_col">
+                  <div class="row_for_earch_data">
+                    <div class="issue_input">Project :</div>
+                    <div class="row_input">
+                      <select
+                        class="issue_input_data"
+                        id="issue_project_id"
+                        onchange="update_machine()"
+                      >
+                        <option value="">Select Project</option>
+                        <option value="ACO">ACO</option>
+                        <option value="UCC">UCC</option>
+                        <option value="ACO">ACO</option>
+                        <option value="AAC">AAC</option>
+                        <option value="UCC">UCC</option>
+                        <option value="UCB">UCB</option>
+                        <option value="AFM">AFM</option>
+                        <option value="ACP">ACP</option>
+                        <option value="LC2.0">LC2.0</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="row_for_earch_data">
+                    <div class="issue_input">Machine:</div>
+                    <div class="row_input">
+                      <select class="issue_input_data" id="issue_machine_id">
+                        <option value="" disabled selected>
+                          Select Machine
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row_for_earch_data">
+                    <div class="shift_input">Issue name:</div>
+                    <div class="row_input">
+                      <input
+                        type="text"
+                        id="issue_name_id"
+                        class="issue_input_data"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row_for_earch_data">
+                    <div class="shift_input">Begin time:</div>
+                    <div class="row_input">
+                      <input
+                        type="datetime-local"
+                        id="issue_begin_time_id"
+                        class="issue_input_data"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="row_for_earch_data">
+                    <div class="shift_input">End time:</div>
+                    <div class="row_input">
+                      <input
+                        type="datetime-local"
+                        id="issue_end_time_id"
+                        class="issue_input_data"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="issue_input_4">
+                <button
+                  class="button_added"
+                  id="button_added_id"
+                  onclick="issue_input()"
+                >
+                  <img src="img/ok-svgrepo-com.svg" class="icon" />OK
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="kpi_class" id="kpi_id">
+            <div class="kpi_table_class">
+              <table class="kpi_table" id="kpi_table_id">
+                <tr>
+                  <th>Project</th>
+                  <th>KPI</th>
+                  <th>STD(hr)</th>
+                  <th>Jan</th>
+                  <th>Feb</th>
+                  <th>Mar</th>
+                  <th>Apr</th>
+                  <th>May</th>
+                  <th>Jun</th>
+                  <th>Jul</th>
+                  <th>Aug</th>
+                  <th>Sep</th>
+                  <th>Oct</th>
+                  <th>Nov</th>
+                  <th>Dec</th>
+                  <th>Avg</th>
+                </tr>
+                <tr ng-repeat="row in msg.payload"></tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="issue_history_class" id="issue_history_id">
+            <div class="row_1">
+              <div class="row_issue_history_input">
+                <div class="row_issue_history_input_text">
+                  <div>Select Project:</div>
+                </div>
+                <select
+                  class="issue_input_data"
+                  id="issue_history_project_id"
+                  onchange="update_machine()"
+                >
+                  <option value="">--</option>
+                  <option value="ACO">ACO</option>
+                  <option value="AAC">AAC</option>
+                  <option value="UCC">UCC</option>
+                  <option value="UCB">UCB</option>
+                  <option value="AFM">AFM</option>
+                  <option value="ACP">ACP</option>
+                  <option value="LC2.0">LC2.0</option>
+                </select>
+              </div>
+              <div class="row_issue_history_input">
+                <div class="row_issue_history_input_text">
+                  <div>Select Machine:</div>
+                </div>
+                <select class="issue_input_data" id="issue_history_machine_id">
+                  <option value="" disabled selected>--</option>
+                </select>
+              </div>
+              <div class="row_issue_history_input">
+                <div class="row_issue_history_input_text">
+                  <div>Select Time:</div>
+                </div>
+                <input
+                  type="month"
+                  id="issue_history_time_id"
+                  class="issue_input_data"
+                />
+              </div>
+              <div class="button_check_issue_history">
+                <button
+                  class="button_check_issue"
+                  onclick="get_issue_history()"
+                >
+                  Check
+                </button>
+              </div>
+            </div>
+
+            <div class="history_issue_row_2">
+              <table class="history_issue_table" id="history_issue_table_id">
+                <tr>
+                  <th>Machine</th>
+                  <th>Iusse name</th>
+                  <th>Begin time</th>
+                  <th>End time</th>
+                  <th>Repair time (min)</th>
+                </tr>
+                <tr ng-repeat="row in msg.payload"></tr>
+              </table>
+            </div>
+          </div>
+          <div class="reload" id="reload_id">
+            <img src="img/loading-green-loading.gif" class="reload_icon" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
